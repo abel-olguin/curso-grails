@@ -26,11 +26,13 @@ class UsuarioController {
     @Transactional
     def save(Usuario usuario) {
 
-        def usuario_s = usuarioService.save(usuario, new User(params))
+        def usuario_s = usuarioService.save(usuario, new User(params))//asigno el save a una variable
 
-        if (!usuario_s) {  
-            respond status:400, usuario.errors, view:'create'
-        }else{
+        if (!usuario_s) {  //si la respuesta es falsa le vuelvo a mostrar la vista create
+            transactionStatus.setRollbackOnly()
+            respond usuario.errors, view: 'create'
+            return
+        }//sino hubo errores pasa inmediatamente a la vista del login
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
@@ -38,7 +40,7 @@ class UsuarioController {
                 }
                 '*' { respond usuario, [status: CREATED] }
             }
-        }
+
         
     }
 

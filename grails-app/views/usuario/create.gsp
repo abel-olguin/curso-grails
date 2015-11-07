@@ -38,7 +38,7 @@
                     <f:field property="segundoApellido" bean="usuario"/>
 
                     <f:field property="username">
-                        <g:field name="username"/>
+                        <g:field name="username" type="text"/>
                     </f:field>
 
                     <f:field property="password">

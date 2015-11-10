@@ -42,7 +42,7 @@ class BootStrap {
 										segundoApellido: 	'bla',
 										edad: 				20,
 										sexo: 				'femenino',
-										email: 				'liliana@seeyousoon.bye',
+										email: 				'liliana@seeyousoon.com',
 										casado: 			false,
 										user: 				user3).save()
 

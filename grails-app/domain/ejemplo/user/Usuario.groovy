@@ -15,7 +15,7 @@ class Usuario {
     static constraints = {
         user nullable:true
     	nombre()
-        email email:true
+        email email:true, unique: true
     	primerApellido()
     	segundoApellido nullable:true
     	edad min:18, max:60

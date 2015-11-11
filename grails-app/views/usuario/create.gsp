@@ -30,31 +30,8 @@
             <g:form action="save">
 
                 <fieldset class="form">
-
-                    <f:field property="nombre" bean="usuario" class="nombre-inp"/>
-                    
-                    <f:field property="primerApellido" bean="usuario"/>
-
-                    <f:field property="segundoApellido" bean="usuario"/>
-
-                    <f:field property="username">
-                        <g:field name="username" type="text"/>
-                    </f:field>
-
-                    <f:field property="password">
-                        <g:field name="password" type="password"/>
-                    </f:field>
-
-                    <f:field property="edad" bean="usuario">
-                        <g:select name="edad" from="${18..65}" noSelection="['':'-Elige tu edad-']" />
-                    </f:field>
-
-                    <f:field property="sexo" bean="usuario"/>
-
-                    <f:field property="email" bean="usuario"/>
-
-                    <f:field property="casado" bean="usuario"/>
-                   
+                    <g:render template="user_form"/> %{-- de esta forma se incluye codigo de otros archivos/templates --}%
+                    <g:render template="usuario_form"/>
                 </fieldset>
 
 

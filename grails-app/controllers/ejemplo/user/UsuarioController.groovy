@@ -9,14 +9,15 @@ class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def usuarioService
+    def springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Usuario.list(params), model:[usuarioCount: Usuario.count()]
     }
 
-    def show(Usuario usuario) {
-        respond usuario
+    def show() {
+        respond Usuario.findByUser(springSecurityService.currentUser)//busco dentro de usuarios al user actual (logueado)
     }
 
     def create() {
@@ -44,30 +45,44 @@ class UsuarioController {
         
     }
 
-    def edit(Usuario usuario) {
-        respond usuario
+    def edit() {
+        respond Usuario.findByUser(springSecurityService.currentUser) //busco dentro de usuarios al user actual (logueado)
     }
 
     @Transactional
-    def update(Usuario usuario) {
-        if (usuario == null) {
+    def update() {
+
+        /**
+         * Con en fin de evitar que los usuarios editen el form o intenten alterar el
+         * id del usuario hago las verificaciones pertinentes forzando a que el
+         * usuario solo introduzca los nuevos valores sin saber su id y asignando
+         * este ultimo en el controlador.
+         */
+
+        def usuario = new Usuario(params)//creo un nuevo usuario a partir de los parametros recibidos
+        def log_usr = Usuario.findByUser(springSecurityService.currentUser)
+
+        if (usuario == null) { //verifico que no sea nulo
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
-        if (usuario.hasErrors()) {
+        if (usuario.hasErrors()) {//hago la validadion de si es o no correcto el usuario
             transactionStatus.setRollbackOnly()
             respond usuario.errors, view:'edit'
             return
         }
 
-        usuario.save flush:true
+        usuario.id      = log_usr.id //asigno el id del usuario logueado
+        usuario.user    = log_usr.user //asigno el user del usuario logueado
+
+        log_usr.save flush:true //guardo
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+                redirect action:"show" //redirecciono a show
             }
             '*'{ respond usuario, [status: OK] }
         }

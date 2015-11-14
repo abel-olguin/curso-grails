@@ -59,7 +59,8 @@ class UsuarioController {
          * este ultimo en el controlador.
          */
 
-        def usuario = new Usuario(params)//creo un nuevo usuario a partir de los parametros recibidos
+        def usuario = new Usuario(params)//creo un nuevo usuario a partir de los parametros recibidos para hacer la validacion
+
         def log_usr = Usuario.findByUser(springSecurityService.currentUser)
 
         if (usuario == null) { //verifico que no sea nulo
@@ -74,14 +75,18 @@ class UsuarioController {
             return
         }
 
-        usuario.id      = log_usr.id //asigno el id del usuario logueado
-        usuario.user    = log_usr.user //asigno el user del usuario logueado
+        /**
+         * si el usuario paso la validacion y no tiene errores
+         * o es nulo asigno los parametros a las propiedades de log_usr
+         * para guardarlo
+         */
+        log_usr.properties = params
 
         log_usr.save flush:true //guardo
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), log_usr.id])
                 redirect action:"show" //redirecciono a show
             }
             '*'{ respond usuario, [status: OK] }

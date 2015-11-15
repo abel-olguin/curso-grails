@@ -1,6 +1,6 @@
 <html>
 <head>
-	
+	<meta name="layout" content="main_not_auth" />
 	<title><g:message code="springSecurity.login.title" default="Ingresar" /></title>
 	
 </head>
@@ -26,7 +26,8 @@
 	                       	
 			<div class="access-links"> 
 				<g:link controller="usuario" action="create">registrar</g:link>
-				<a href="#">¿olvidaste tu contraseña?</a>
+				<g:link controller="user" action="restore_pass">¿olvidaste tu contraseña?</g:link>
+				<a href="#"></a>
 			</div>      		  	   	
 			       
 		</div>

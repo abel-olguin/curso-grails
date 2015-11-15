@@ -37,7 +37,7 @@ class UsuarioController {
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                    redirect action:'auth'
+                    redirect action:'auth',controller:'login'
                 }
                 '*' { respond usuario, [status: CREATED] }
             }
@@ -58,9 +58,7 @@ class UsuarioController {
          * usuario solo introduzca los nuevos valores sin saber su id y asignando
          * este ultimo en el controlador.
          */
-
-        def usuario = new Usuario(params)//creo un nuevo usuario a partir de los parametros recibidos para hacer la validacion
-
+        def usuario = new Usuario(params)
         def log_usr = Usuario.findByUser(springSecurityService.currentUser)
 
         if (usuario == null) { //verifico que no sea nulo
@@ -80,6 +78,7 @@ class UsuarioController {
          * o es nulo asigno los parametros a las propiedades de log_usr
          * para guardarlo
          */
+
         log_usr.properties = params
 
         log_usr.save flush:true //guardo

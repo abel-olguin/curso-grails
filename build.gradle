@@ -15,7 +15,6 @@ buildscript {
 
 plugins {
     id "io.spring.dependency-management" version "0.5.2.RELEASE"
-
 }
 
 version "0.1"
@@ -79,6 +78,13 @@ dependencies {
     //security core
     
     compile 'org.grails.plugins:spring-security-core:3.0.0.M1'
+
+    //mail
+    compile "org.grails.plugins:mail:2.0.0.RC2"
+
+    //encript and decript
+
+    compile "org.grails.plugins:jasypt-encryption:2.0.1"
 
 }
 

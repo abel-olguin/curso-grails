@@ -58,8 +58,8 @@ class UserController {
      * sino muestro el error 404
      * @return
      */
-    def change_pass(){
-        if(userService.check_token(params.token)){
+    def change_pass(String token){
+        if(userService.check_token(token)){
             render view: '/restore/change_pass'
         }else{
             render view: '/errors/404'
@@ -75,6 +75,7 @@ class UserController {
      */
     @Transactional(readOnly = false)
     def update_pass(){
+
         def errors = []
         if(userService.check_token(params.token)){//verifico la integridad del token
 

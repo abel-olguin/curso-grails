@@ -7,17 +7,22 @@
 
 <body>
 
-    	<div class="container" id="login-block">
+    	<div class="col-lg-4 col-lg-offset-4" id="login-block">
     		
 			<form action='${postUrl}' method='POST' id='loginForm'  autocomplete='off'>
-								
-									
-				<input type='text'  name='j_username' id='username' placeholder=${message(code: 'placeholder.login.user.label', default: 'User')} />
-								
-									
-				<input type='password' name='j_password' id='password' placeholder=${message(code: 'placeholder.login.password.label', default: 'Password')} />
 
-				<button type="submit" class="btn btn-green" id="submit" style="width: auto;">
+				<div class="form-group">
+					<label for="j_username">${message(code: 'login.username.label', default: 'Username')}</label>
+					<input type="text" id="j_username" name='j_username' class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="j_password">${message(code: 'login.password.label', default: 'Password')}</label>
+					<input type="password" id="j_password" name='j_password' class="form-control">
+				</div>
+
+									
+				<button type="submit" class="btn btn-info" id="submit" style="width: auto;">
 					                    ${message(code: 'springSecurity.login.button', default: 'Login')}
                 </button> 
 
@@ -31,12 +36,6 @@
 			</div>      		  	   	
 			       
 		</div>
-      	
-     	<footer class="footer">
-     		<p id="footer-text">
-     			<small>curso grails by abel olguin</small>
-     		</p>       		
-     	</footer>
 
 </body>
 </html>

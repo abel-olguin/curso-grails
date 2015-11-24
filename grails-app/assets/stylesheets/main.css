@@ -117,14 +117,7 @@ img {
 
 /* NAVIGATION MENU */
 
-.nav {
-    background-color: #efefef;
-    padding: 0.5em 0.75em;
-       -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-    -webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-            box-shadow: 0 0 3px 1px #aaaaaa;
-    zoom: 1;
-}
+
 
 .nav ul {
     overflow: hidden;

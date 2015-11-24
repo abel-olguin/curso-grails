@@ -8,6 +8,8 @@
 //= require jquery-2.1.3.js
 //= require_tree .
 //= require_self
+// Bootstrap
+
 
 if (typeof jQuery !== 'undefined') {
     (function($) {

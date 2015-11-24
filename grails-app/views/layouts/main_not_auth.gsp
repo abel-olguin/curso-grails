@@ -12,13 +12,15 @@
     </head>
    
     <sec:ifNotLoggedIn>
-        <body>
-            <div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
-            
-            <g:layoutBody/>
-            
-            <div class="footer" role="contentinfo"></div>
-            <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+        <body class="container no-padding">
+            <div class="col-lg-12 container-fluid no-padding">
+                <div id="grailsLogo" role="banner" ><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails" class="img-responsive"/></a></div>
+                <div class="format container col-lg-12">
+                    <g:layoutBody/>
+                </div>
+                <div class="footer" role="contentinfo"></div>
+                <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+            </div>
         </body>
     </sec:ifNotLoggedIn>
   

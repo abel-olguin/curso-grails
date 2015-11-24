@@ -8,8 +8,8 @@ grails:
     mail:
       host:     'smtp.gmail.com'
       port:     465
-      username: 'tuuser'
-      password: 'tupass'
+      username: 'tu-user'
+      password: 'tu-pass'
       props:
         'mail.smtp.auth':                   true
         'mail.smtp.socketFactory.port':     465
@@ -164,3 +164,5 @@ environments:
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
 
+ejemplo:
+  email: "osmer19@hotmail.com"

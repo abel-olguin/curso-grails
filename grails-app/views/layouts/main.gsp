@@ -25,6 +25,7 @@
                             <li class="active"><g:link controller="usuario" action="show">Perfil</g:link></li>
                             <li><g:link controller='logout' action=''>Logout</g:link></li>
                             <li><g:link controller='contact' action='index'>Contacto</g:link></li>
+                            <li><g:link controller='entradas' action='index'>Contacto</g:link></li>
                         </ul>
                     </div>
                 </div>
